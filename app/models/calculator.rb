@@ -1,10 +1,10 @@
 class Calculator
   def self.get_delimiter(numbers)
-    numbers.match?(/\/\/.*\n/) ? numbers.match(/\/\/(.*)\n/)[1] : ","
+    numbers.match?(/\/\/\[.*\]\n/) ? numbers.match(/\/\/\[(.*)\]\n/)[1] : ","
   end
 
   def self.get_numbers(numbers)
-    numbers.match?(/\/\/.*\n/) ? numbers.split("\n", 2).last : numbers
+    numbers.match?(/\/\/\[.*\]\n/) ? numbers.split("\n", 2).last : numbers
   end
 
   def self.check_for_negatives!(numbers_array)
