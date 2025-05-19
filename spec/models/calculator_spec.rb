@@ -54,6 +54,8 @@ RSpec.describe Calculator, type: :model do
     expect(Calculator.add("//:\n1:2:3")).to eq(6)
     expect(Calculator.add("//;\n1;2\n3;4")).to eq(10)
     expect(Calculator.add("//;\n1;2;3;4\n5")).to eq(15)
+    expect(Calculator.add("//;;;\n1;;;2;;;3;;;4\n5")).to eq(15)
+    expect(Calculator.add("//***\n1***2***3")).to eq(6)
   end
 
   # Test 8
