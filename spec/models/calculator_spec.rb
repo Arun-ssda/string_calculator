@@ -27,4 +27,13 @@ RSpec.describe Calculator, type: :model do
     expect { Calculator.add('1,2,3') }.to raise_error(ArgumentError)
     expect { Calculator.add('1,2,3,4') }.to raise_error(ArgumentError)
   end
+
+  # Test 5
+  it 'should return expected sum' do
+    expect { Calculator.add('a,b') }.to raise_error(ArgumentError)
+    expect { Calculator.add('a,1') }.to raise_error(ArgumentError)
+    expect(Calculator.add('11,22')).to eq(33)
+    expect(Calculator.add('10')).to eq(10)
+    expect(Calculator.add('')).to eq(0)
+  end
 end
