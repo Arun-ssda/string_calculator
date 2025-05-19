@@ -56,6 +56,9 @@ RSpec.describe Calculator, type: :model do
     expect(Calculator.add("//[;]\n1;2;3;4\n5")).to eq(15)
     expect(Calculator.add("//[;;;]\n1;;;2;;;3;;;4\n5")).to eq(15)
     expect(Calculator.add("//[***]\n1***2***3")).to eq(6)
+    expect(Calculator.add("//[;][*]\n1;2;3*4\n5")).to eq(15)
+    expect(Calculator.add("//[***][///]\n1***2///3")).to eq(6)
+    expect(Calculator.add("//[***][///][;]\n1***2///3;4")).to eq(10)
   end
 
   # Test 8
@@ -71,5 +74,6 @@ RSpec.describe Calculator, type: :model do
     expect(Calculator.add("1000,2")).to eq(1002)
     expect(Calculator.add("//[;]\n1001;2")).to eq(2)
     expect(Calculator.add("//[;]\n1000;2")).to eq(1002)
+    expect(Calculator.add("//[***][///]\n1***2000///3")).to eq(4)
   end
 end
