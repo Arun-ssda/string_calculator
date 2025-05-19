@@ -24,8 +24,9 @@ RSpec.describe Calculator, type: :model do
     expect { Calculator.add('1,2') }.not_to raise_error
     expect { Calculator.add('1') }.not_to raise_error
     expect { Calculator.add('') }.not_to raise_error
-    expect { Calculator.add('1,2,3') }.to raise_error(ArgumentError)
-    expect { Calculator.add('1,2,3,4') }.to raise_error(ArgumentError)
+    expect { Calculator.add('1,2,3') }.not_to raise_error
+    expect { Calculator.add('1,2,3,4') }.not_to raise_error
+    expect { Calculator.add('1,2,3,4,11,22,34') }.not_to raise_error
   end
 
   # Test 5
@@ -35,5 +36,7 @@ RSpec.describe Calculator, type: :model do
     expect(Calculator.add('11,22')).to eq(33)
     expect(Calculator.add('10')).to eq(10)
     expect(Calculator.add('')).to eq(0)
+    expect(Calculator.add('1,2,3,4,11,22,34')).to eq(77)
+    expect(Calculator.add('1,2,3,4')).to eq(10)
   end
 end
