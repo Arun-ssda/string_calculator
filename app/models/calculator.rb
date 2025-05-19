@@ -22,6 +22,7 @@ class Calculator
     numbers_array.each do |number|
       raise ArgumentError, "Not a number" unless number.to_i.to_s == number
     end
+    numbers_array.reject! { |number| number.to_i > 1000 }
     numbers_array.sum(&:to_i)
   end
 end
