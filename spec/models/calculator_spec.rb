@@ -1,18 +1,30 @@
 require 'rails_helper'
 
 RSpec.describe Calculator, type: :model do
+  # Test 1
   it 'is defined' do
     expect(defined?(Calculator)).to eq('constant')
   end
 
+  # Test 2
   it 'has method add with single argument' do
     expect(Calculator).to respond_to(:add).with(1).argument
   end
 
+  # Test 3
   it 'accepts string as argument' do
     expect { Calculator.add('1,2') }.not_to raise_error
     expect { Calculator.add(1) }.to raise_error(ArgumentError)
     expect { Calculator.add(nil) }.to raise_error(ArgumentError)
     expect { Calculator.add([]) }.to raise_error(ArgumentError)
+  end
+
+  # Test 4
+  it 'can take upto 2 numbers' do
+    expect { Calculator.add('1,2') }.not_to raise_error
+    expect { Calculator.add('1') }.not_to raise_error
+    expect { Calculator.add('') }.not_to raise_error
+    expect { Calculator.add('1,2,3') }.to raise_error(ArgumentError)
+    expect { Calculator.add('1,2,3,4') }.to raise_error(ArgumentError)
   end
 end
