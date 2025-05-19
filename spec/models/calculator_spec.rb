@@ -4,4 +4,8 @@ RSpec.describe Calculator, type: :model do
   it 'is defined' do
     expect(defined?(Calculator)).to eq('constant')
   end
+
+  it 'has method add with single argument' do
+    expect(Calculator).to respond_to(:add).with(1).argument
+  end
 end
