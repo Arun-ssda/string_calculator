@@ -62,4 +62,12 @@ RSpec.describe Calculator, type: :model do
     expect { Calculator.add("-1,2,-3,5") }.to raise_error(ArgumentError, 'negatives not allowed: -1, -3')
     expect { Calculator.add("//;\n1;2;-3;4\n-5") }.to raise_error(ArgumentError, 'negatives not allowed: -3, -5')
   end
+
+  # Test 9
+  it 'should ignore numbers greater than 1000' do
+    expect(Calculator.add("1001,2")).to eq(2)
+    expect(Calculator.add("1000,2")).to eq(1002)
+    expect(Calculator.add("//;\n1001;2")).to eq(2)
+    expect(Calculator.add("//;\n1000;2")).to eq(1002)
+  end
 end
