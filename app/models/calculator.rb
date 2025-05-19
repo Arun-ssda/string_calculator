@@ -1,10 +1,10 @@
 class Calculator
   def self.get_delimiter(numbers)
-    numbers.match?(/\/\/.\n/) ? numbers.match(/\/\/(.)\n/)[1] : ","
+    numbers.match?(/\/\/.*\n/) ? numbers.match(/\/\/(.*)\n/)[1] : ","
   end
 
   def self.get_numbers(numbers)
-    numbers.match?(/\/\/.\n/) ? numbers.split("\n", 2).last : numbers
+    numbers.match?(/\/\/.*\n/) ? numbers.split("\n", 2).last : numbers
   end
 
   def self.check_for_negatives!(numbers_array)
@@ -16,7 +16,7 @@ class Calculator
     raise ArgumentError, "input should be a string" unless numbers.is_a?(String)
     delimiter = get_delimiter(numbers)
     numbers = get_numbers(numbers)
-    numbers_array = numbers.split(/[#{delimiter}\n]/)
+    numbers_array = numbers.split(/#{Regexp.escape(delimiter)}|\n/)
     # raise ArgumentError, "upto 2 numbers allowed" unless numbers_array.size <= 2
     check_for_negatives!(numbers_array)
     numbers_array.each do |number|
