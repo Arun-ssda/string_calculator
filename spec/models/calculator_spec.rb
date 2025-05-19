@@ -47,4 +47,12 @@ RSpec.describe Calculator, type: :model do
     expect(Calculator.add("1,2\n3,4")).to eq(10)
     expect(Calculator.add("1,2\n3,4,5")).to eq(15)
   end
+
+  # Test 7
+  it 'should support custom delimiter' do
+    expect(Calculator.add("//;\n1;2")).to eq(3)
+    expect(Calculator.add("//:\n1:2:3")).to eq(6)
+    expect(Calculator.add("//;\n1;2\n3;4")).to eq(10)
+    expect(Calculator.add("//;\n1;2;3;4\n5")).to eq(15)
+  end
 end
